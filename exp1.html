@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank</title>
+</head>
+<body>
+
+<h2 id="bal">Balance: 1000</h2>
+
+<input type="number" id="amt" placeholder="Enter amount">
+
+<br><br>
+
+<button onclick="dep()">Deposit</button>
+<button onclick="wit()">Withdraw</button>
+
+<p id="msg"></p>
+
+<script>
+let balance = 1000;
+
+function dep() {
+    let a = Number(amt.value);
+    if (a <= 0) msg.innerText = "Invalid amount";
+    else {
+        balance += a;
+        bal.innerText = "Balance: " + balance;
+        msg.innerText = "Deposited";
+    }
+}
+
+function wit() {
+    let a = Number(amt.value);
+    if (a <= 0) msg.innerText = "Invalid amount";
+    else if (a > balance) msg.innerText = "Insufficient balance";
+    else {
+        balance -= a;
+        bal.innerText = "Balance: " + balance;
+        msg.innerText = "Withdrawn";
+    }
+}
+</script>
+
+</body>
+</html>
