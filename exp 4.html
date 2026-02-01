@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Character Counter</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1c2d;
+      color: white;
+    }
+
+    .container {
+      width: 300px;
+      margin: 100px auto;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      resize: none;
+    }
+
+    .counter {
+      text-align: right;
+      margin-top: 5px;
+      transition: color 0.3s ease;
+    }
+
+    .limit {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Live Character Counter</h3>
+
+    <textarea id="textBox" maxlength="150"
+      placeholder="Type your message..."></textarea>
+
+    <div id="counter" class="counter">0 / 150</div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const textBox = document.getElementById("textBox");
+      const counter = document.getElementById("counter");
+      const maxChars = 150;
+
+      textBox.addEventListener("input", function () {
+        const currentLength = textBox.value.length;
+        counter.textContent = currentLength + " / " + maxChars;
+
+        if (currentLength === maxChars) {
+          counter.classList.add("limit");
+        } else {
+          counter.classList.remove("limit");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
