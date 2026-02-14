@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            width: 250px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .in {
+            color: green;
+            font-weight: bold;
+        }
+
+        .out {
+            color: red;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="card">
+            <img src="https://via.placeholder.com/200" class="product-img" alt="Wireless Headphones">
+            <h2>Wireless Headphones</h2>
+            <p class="price">₹ 1999</p>
+            <p class="in">In Stock</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/200" class="product-img" alt="Smart Watch">
+            <h2>Smart Watch</h2>
+            <p class="price">₹ 2999</p>
+            <p class="out">Out of Stock</p>
+            <button disabled>Unavailable</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

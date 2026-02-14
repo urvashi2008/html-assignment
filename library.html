@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .search-section {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .remove-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .book-card {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .book-card h3 {
+            margin: 0;
+        }
+
+        .book-card p {
+            margin: 5px 0 0;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Library Management System</h1>
+
+    <div class="search-section">
+        <input type="text" id="search" placeholder="Search books..." onkeyup="searchBooks()">
+        <br>
+        <input type="text" id="title" placeholder="Book Title">
+        <input type="text" id="author" placeholder="Author">
+        <button class="add-btn" onclick="addBook()">Add Book</button>
+    </div>
+
+    <div id="bookList"></div>
+</div>
+
+<script>
+
+    // Default Books (3 Books)
+    let books = [
+        { title: "The Great Gatsby", author: "S. Scott Fitzgerald" },
+        { title: "Atomic Habits", author: "James Clear" },
+        { title: "The Alchemist", author: "Paulo Coelho" }
+    ];
+
+    function displayBooks(filteredBooks) {
+        const bookList = document.getElementById("bookList");
+        bookList.innerHTML = "";
+
+        filteredBooks.forEach((book, index) => {
+            const bookDiv = document.createElement("div");
+            bookDiv.className = "book-card";
+
+            bookDiv.innerHTML = `
+                <div>
+                    <h3>${book.title}</h3>
+                    <p>by ${book.author}</p>
+                </div>
+                <button class="remove-btn" onclick="removeBook(${index})">Remove</button>
+            `;
+
+            bookList.appendChild(bookDiv);
+        });
+    }
+
+    function addBook() {
+        const title = document.getElementById("title").value.trim();
+        const author = document.getElementById("author").value.trim();
+
+        if (title === "" || author === "") {
+            alert("Please fill all fields");
+            return;
+        }
+
+        books.push({ title, author });
+
+        document.getElementById("title").value = "";
+        document.getElementById("author").value = "";
+
+        displayBooks(books);
+    }
+
+    function removeBook(index) {
+        books.splice(index, 1);
+        displayBooks(books);
+    }
+
+    function searchBooks() {
+        const searchValue = document.getElementById("search").value.toLowerCase();
+
+        const filtered = books.filter(book =>
+            book.title.toLowerCase().includes(searchValue) ||
+            book.author.toLowerCase().includes(searchValue)
+        );
+
+        displayBooks(filtered);
+    }
+
+    // Show books when page loads
+    displayBooks(books);
+
+</script>
+
+</body>
+</html>
